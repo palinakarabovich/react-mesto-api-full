@@ -1,0 +1,16 @@
+.entrance__link {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 15px;
+    transition: opacity ease-in-out .2s;
+    text-decoration: none;
+}
+
+.entrance__link:hover{
+    cursor: pointer;
+    opacity: .6;
+}

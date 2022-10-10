@@ -1,0 +1,20 @@
+.profile__info-caption{
+    color: white;
+    font-size: 18px;
+    line-height: 1.21;
+    font-weight: 400;
+    margin: 16px 0 0 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 300px;
+}
+
+@media screen and (max-width: 730px){
+    .profile__info-caption{
+        font-size: 14px;
+        margin-top: 10px;
+        text-align: center;
+        width: 282px;
+    } 
+ }

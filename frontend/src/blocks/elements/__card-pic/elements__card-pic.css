@@ -1,0 +1,15 @@
+.elements__card-pic{
+    width: 282px;
+    height: 282px;
+    border-top-left-radius:10px;
+    border-top-right-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: opacity ease-in-out .2s;
+}
+
+.elements__card-pic:hover {
+    cursor: pointer;
+    opacity: .6;
+  }

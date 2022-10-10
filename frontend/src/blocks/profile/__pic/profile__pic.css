@@ -1,0 +1,7 @@
+.profile__pic{
+    position: relative;
+}
+
+.profile__pic:hover .profile__avatar-edit-button{
+    display: block;
+}

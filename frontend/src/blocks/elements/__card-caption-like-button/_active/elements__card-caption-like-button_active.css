@@ -1,0 +1,4 @@
+.elements__card-caption-like-button_active{
+    opacity: 1;
+    background-image: url(../../../../images/btn-like-active.svg);
+}
