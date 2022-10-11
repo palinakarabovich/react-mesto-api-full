@@ -111,7 +111,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'http://localhost:3002',
+    baseUrl: 'http://apipalinakarabovich.mesto.nomoredomains.icu/',
   });
 
   export default api;
