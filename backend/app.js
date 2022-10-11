@@ -21,9 +21,7 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(cors({
-  origin: true,
-  exposedHeaders: '*',
-  credentials: true,
+  Origin: 'http://palinakarabovich.mesto.nomoredomains.icu/',
 }));
 
 app.use(bodyParser.json());
