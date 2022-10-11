@@ -29,12 +29,13 @@ function App() {
   const [email, setEmail] = React.useState('');
   const [loggedIn, setLoggedIn] = React.useState(false);
 
+  const token = localStorage.getItem('token');
+
   React.useEffect(() => {
-    const token = localStorage.getItem('token');
     auth.checkToken(token)
       .then((data) => {
         if (data) {
-          setEmail(data.data.email);
+          setEmail(data.email);
           setLoggedIn(true);
           history.push('/');
           Promise.all([
@@ -63,7 +64,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.toggleLike(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
     })

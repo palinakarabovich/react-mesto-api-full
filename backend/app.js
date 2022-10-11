@@ -16,7 +16,7 @@ const {
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3002 } = process.env;
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.get('/crash-test', () => {
 
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {
+mongoose.connect('mongodb://localhost:27017/mestodb2', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
