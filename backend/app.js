@@ -7,6 +7,7 @@ const routerCards = require('./routers/cards');
 const NotFoundError = require('./errors/NotFoundError');
 const errorHandler = require('./errors/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('cors');
 
 const regEx = require('./constants/constants');
 
@@ -18,6 +19,12 @@ const auth = require('./middlewares/auth');
 const { PORT = 3000 } = process.env;
 
 const app = express();
+
+app.use(cors({
+  origin: true,
+  exposedHeaders: '*',
+  credentials: true,
+}));
 
 app.use(bodyParser.json());
 
