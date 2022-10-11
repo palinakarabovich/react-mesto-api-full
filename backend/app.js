@@ -22,6 +22,12 @@ const app = express();
 
 app.use(cors());
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+}); 
+
 app.use(bodyParser.json());
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
