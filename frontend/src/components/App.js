@@ -166,6 +166,7 @@ function App() {
         setEmail(email);
         setLoggedIn(true);
         localStorage.setItem('token', data.token);
+        console.log(data.token);
         history.push('/');
       }
     })
@@ -180,6 +181,7 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem('token');
+    console.log(localStorage.getItem('token'));
     setLoggedIn(false);
     setEmail('');
     history.push('/sign-in');

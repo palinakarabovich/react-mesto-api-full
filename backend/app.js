@@ -9,6 +9,8 @@ const errorHandler = require('./errors/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('cors');
 
+require('dotenv').config(); 
+
 const regEx = require('./constants/constants');
 
 const {
