@@ -78,7 +78,6 @@ function App() {
       setRenderSaving(true);
       auth.login(email, password).then((data) => {
         if (data.token) {
-          console.log(data);
           localStorage.setItem('token', data.token);
           setEmail(email);
           checkToken();
