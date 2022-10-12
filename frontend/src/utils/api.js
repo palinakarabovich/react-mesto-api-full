@@ -1,6 +1,5 @@
 class Api {
     constructor({ baseUrl }) {
-      this._token = localStorage.getItem('token');
       this._baseUrl = baseUrl;
       this._cardsUrl = `${this._baseUrl}/cards`;
       this._userUrl = `${this._baseUrl}/users/me`;
@@ -17,7 +16,7 @@ class Api {
      return fetch (this._cardsUrl, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${this._token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
      })
      .then(this._checkResponse);
@@ -28,7 +27,7 @@ class Api {
     return fetch(this._userUrl, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${this._token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
     })
     .then(this._checkResponse);
@@ -38,7 +37,7 @@ class Api {
     return fetch(this._userUrl, {
         method: 'PATCH',
         headers: {
-          Authorization: `Bearer ${this._token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -53,7 +52,7 @@ class Api {
     return fetch(`${this._userUrl}/avatar`, {
         method: 'PATCH',
         headers: {
-          Authorization: `Bearer ${this._token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -67,7 +66,7 @@ class Api {
     return fetch(`${this._cardsUrl}/${cardId}`, {
         method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${this._token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
       })
       .then(this._checkResponse);
@@ -77,7 +76,7 @@ class Api {
     return fetch(this._cardsUrl,{
         method: 'POST',
         headers:{
-          Authorization: `Bearer ${this._token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -93,7 +92,7 @@ class Api {
       return fetch(`${this._cardsUrl}/${card}/likes`,{
         method: 'PUT',
         headers:{
-          Authorization: `Bearer ${this._token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
       })
       .then(this._checkResponse);
@@ -102,7 +101,7 @@ class Api {
       return fetch(`${this._cardsUrl}/${card}/likes`,{
         method: 'DELETE',
         headers:{
-          Authorization: `Bearer ${this._token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
       })
       .then(this._checkResponse);
@@ -111,7 +110,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'http://apipalinakarabovich.mesto.nomoredomains.icu'
+    baseUrl: 'http://localhost:3002'
   });
 
   export default api;

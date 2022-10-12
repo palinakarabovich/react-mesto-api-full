@@ -29,29 +29,106 @@ function App() {
   const [email, setEmail] = React.useState('');
   const [loggedIn, setLoggedIn] = React.useState(false);
 
-  const token = localStorage.getItem('token');
+  function checkToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      auth.checkToken(token)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setEmail(res.email);
+            history.push('/');
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   React.useEffect(() => {
-    auth.checkToken(token)
-      .then((data) => {
+    checkToken();
+  }, []);
+
+  React.useEffect(() => {
+    if (!loggedIn) {
+      history.push('/sign-in');
+    }
+  },
+    [loggedIn, history]);
+
+    const handleRegister = (email, password) => {
+      setRenderSaving(true);
+      auth.register(email, password).then((data) => {
         if (data) {
-          setEmail(data.email);
-          setLoggedIn(true);
-          history.push('/');
-          Promise.all([
-            api.getUserInfo(),
-            api.getInitialCards(),
-          ])
-            .then(([user, initialCards]) => {
-              setCurrentUser(user);
-              setCards(initialCards);
-            })
-            .catch((err) => {
-              console.log(err);
-            })
+          handleInfoTooltip(true);
+          history.push('/sign-in');
         }
       })
-  }, [loggedIn, history]);
+        .catch((err) => {
+          console.log(err);
+          handleInfoTooltip(false);
+        })
+        .finally(() => {
+          setRenderSaving(false);
+        })
+    }
+
+    const handleLogin = (email, password) => {
+      setRenderSaving(true);
+      auth.login(email, password).then((data) => {
+        if (data.token) {
+          console.log(data);
+          localStorage.setItem('token', data.token);
+          setEmail(email);
+          checkToken();
+          setLoggedIn(true);
+          history.push('/');
+        }
+      })
+        .catch((err) => {
+          console.log(err);
+          handleInfoTooltip(false);
+        })
+        .finally(() => {
+          setRenderSaving(false);
+        })
+    }
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      api.getInitialCards()
+        .then((cards) => {
+          setCards(cards);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  },
+    [loggedIn]);
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      api.getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  },
+    [loggedIn]);
+  
+    const handleSignOut = () => {
+      localStorage.removeItem('token');
+      setLoggedIn(false);
+      setEmail('');
+      history.push('/sign-in');
+    }
+
+
 
   function handleCardDelete(card) {
     api.deleteCard(card._id).then(() => {
@@ -141,50 +218,6 @@ function App() {
 
   const handleInfoTooltip = (res) => {
     setInfoTooltip({ ...isInfoTooltip, isOpen: true, successful: res });
-  }
-
-  const handleRegister = (email, password) => {
-    setRenderSaving(true);
-    auth.register(email, password).then((data) => {
-      if (data) {
-        handleInfoTooltip(true);
-      }
-    })
-      .catch((err) => {
-        console.log(err);
-        handleInfoTooltip(false);
-      })
-      .finally(() => {
-        setRenderSaving(false);
-      })
-  }
-
-  const handleLogin = (email, password) => {
-    setRenderSaving(true);
-    auth.login(email, password).then((data) => {
-      if (data.token) {
-        setEmail(email);
-        setLoggedIn(true);
-        localStorage.setItem('token', data.token);
-        console.log(data.token);
-        history.push('/');
-      }
-    })
-      .catch((err) => {
-        console.log(err);
-        handleInfoTooltip(false);
-      })
-      .finally(() => {
-        setRenderSaving(false);
-      })
-  }
-
-  const handleSignOut = () => {
-    localStorage.removeItem('token');
-    console.log(localStorage.getItem('token'));
-    setLoggedIn(false);
-    setEmail('');
-    history.push('/sign-in');
   }
 
   return (
