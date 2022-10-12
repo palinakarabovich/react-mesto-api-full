@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:3002';
+export const BASE_URL = 'http://apipalinakarabovich.mesto.nomoredomains.icu';
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
       method: 'POST',
