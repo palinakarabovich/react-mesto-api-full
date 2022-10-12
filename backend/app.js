@@ -9,7 +9,7 @@ const errorHandler = require('./errors/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('cors');
 
-require('dotenv').config(); 
+require('dotenv').config();
 
 const regEx = require('./constants/constants');
 
@@ -28,7 +28,7 @@ app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
-}); 
+});
 
 app.use(bodyParser.json());
 

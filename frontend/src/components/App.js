@@ -54,45 +54,44 @@ function App() {
     if (!loggedIn) {
       history.push('/sign-in');
     }
-  },
-    [loggedIn, history]);
+  }, [loggedIn, history]);
 
-    const handleRegister = (email, password) => {
-      setRenderSaving(true);
-      auth.register(email, password).then((data) => {
-        if (data) {
-          handleInfoTooltip(true);
-          history.push('/sign-in');
-        }
+  const handleRegister = (email, password) => {
+    setRenderSaving(true);
+    auth.register(email, password).then((data) => {
+      if (data) {
+        handleInfoTooltip(true);
+        history.push('/sign-in');
+      }
+    })
+      .catch((err) => {
+        console.log(err);
+        handleInfoTooltip(false);
       })
-        .catch((err) => {
-          console.log(err);
-          handleInfoTooltip(false);
-        })
-        .finally(() => {
-          setRenderSaving(false);
-        })
-    }
+      .finally(() => {
+        setRenderSaving(false);
+      })
+  }
 
-    const handleLogin = (email, password) => {
-      setRenderSaving(true);
-      auth.login(email, password).then((data) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-          setEmail(email);
-          checkToken();
-          setLoggedIn(true);
-          history.push('/');
-        }
+  const handleLogin = (email, password) => {
+    setRenderSaving(true);
+    auth.login(email, password).then((data) => {
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        setEmail(email);
+        checkToken();
+        setLoggedIn(true);
+        history.push('/');
+      }
+    })
+      .catch((err) => {
+        console.log(err);
+        handleInfoTooltip(false);
       })
-        .catch((err) => {
-          console.log(err);
-          handleInfoTooltip(false);
-        })
-        .finally(() => {
-          setRenderSaving(false);
-        })
-    }
+      .finally(() => {
+        setRenderSaving(false);
+      })
+  }
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -104,8 +103,7 @@ function App() {
           console.log(err);
         });
     }
-  },
-    [loggedIn]);
+  }, [loggedIn]);
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -117,17 +115,14 @@ function App() {
           console.log(err);
         });
     }
-  },
-    [loggedIn]);
-  
-    const handleSignOut = () => {
-      localStorage.removeItem('token');
-      setLoggedIn(false);
-      setEmail('');
-      history.push('/sign-in');
-    }
+  }, [loggedIn]);
 
-
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    setLoggedIn(false);
+    setEmail('');
+    history.push('/sign-in');
+  }
 
   function handleCardDelete(card) {
     api.deleteCard(card._id).then(() => {
