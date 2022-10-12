@@ -110,7 +110,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'http://apipalinakarabovich.mesto.nomoredomains.icu'
+    baseUrl: 'https://apipalinakarabovich.mesto.nomoredomains.icu'
   });
 
   export default api;
