@@ -225,14 +225,14 @@ function App() {
 
         <Switch>
 
-          <Route path='/sign-up'>
+          <Route path='/react-mesto-api-full/sign-up'>
             <Register
               onRegister={handleRegister}
               isRender={renderSaving}
             />
           </Route>
 
-          <Route path='/sign-in'>
+          <Route path='/react-mesto-api-full/sign-in'>
             <Login
               onLogin={handleLogin}
               isRender={renderSaving}
@@ -240,7 +240,7 @@ function App() {
           </Route>
 
           <ProtectedRoute
-            path='/'
+            path='/react-mesto-api-full'
             loggedIn={loggedIn}
             component={Main}
             onEditProfile={handleEditProfileClick}
@@ -252,8 +252,8 @@ function App() {
             cards={cards}
           />
 
-          <Route exact path="/">
-            {loggedIn ? <Redirect to='/' /> : <Redirect to='/sign-in' />}
+          <Route exact path="/react-mesto-api-full/">
+            {loggedIn ? <Redirect to='/react-mesto-api-full/' /> : <Redirect to='/react-mesto-api-full/sign-in' />}
           </Route>
 
         </Switch>

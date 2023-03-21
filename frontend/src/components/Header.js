@@ -7,14 +7,14 @@ function Header({ email, onSignOut }) {
             <a href="#" className="header__link link-style"><img src={logoPath} alt="Logo" className="logo" /></a>
             <div className='header__container'>
                 <p className='header__email'>{email}</p>
-                <Route exact path='/sign-up'>
-                    <Link to='sign-in' className='header__link'>Login</Link>
+                <Route exact path='/react-mesto-api-full/sign-up'>
+                    <Link to='/react-mesto-api-full/sign-in' className='header__link'>Login</Link>
                 </Route>
-                <Route exact path='/sign-in'>
-                    <Link to='sign-up' className='header__link'>Register</Link>
+                <Route exact path='/react-mesto-api-full/sign-in'>
+                    <Link to='/react-mesto-api-full/sign-up' className='header__link'>Register</Link>
                 </Route>
-                <Route exact path='/'>
-                    <Link to='sign-in' className='header__link' onClick={onSignOut}>Logout</Link>
+                <Route exact path='/react-mesto-api-full/'>
+                    <Link to='/react-mesto-api-full/sign-in' className='header__link' onClick={onSignOut}>Logout</Link>
                 </Route>
             </div>
         </header>

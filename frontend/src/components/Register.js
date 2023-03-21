@@ -28,7 +28,7 @@ function Register({onRegister, isRender}) {
                     <input className='entrance__input' type='password' placeholder='Password' value={password} onChange={handlePasswordChange}/>
                     <button className='entrance__button-submit' type='submit'>{isRender ? 'Creatin account...' : 'Register' }</button>
                 </form>
-                <Link to='/sign-in' className='entrance__link'>Have an account? Login</Link>
+                <Link to='/react-mesto-api-full/sign-in' className='entrance__link'>Have an account? Login</Link>
             </div>
         </section>
     )
