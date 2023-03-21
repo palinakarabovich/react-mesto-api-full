@@ -110,7 +110,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://apipalinakarabovich.mesto.nomoredomains.icu'
+  baseUrl: 'https://mesto-api-mongodb.herokuapp.com'
 });
 
 export default api;
