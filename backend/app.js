@@ -32,7 +32,7 @@ app.get('/crash-test', () => {
 
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/mestodb5', {
+mongoose.connect('mongodb+srv://palinakarabovich:2228481Polina@cluster0.evd0eld.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
