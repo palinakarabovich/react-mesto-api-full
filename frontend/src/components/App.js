@@ -37,7 +37,7 @@ function App() {
           if (res) {
             setLoggedIn(true);
             setEmail(res.email);
-            history.push('/');
+            history.push('/react-mesto-api-full');
           }
         })
         .catch((err) => {
@@ -52,7 +52,7 @@ function App() {
 
   React.useEffect(() => {
     if (!loggedIn) {
-      history.push('/sign-in');
+      history.push('/react-mesto-api-full/sign-in');
     }
   }, [loggedIn, history]);
 
@@ -61,7 +61,7 @@ function App() {
     auth.register(email, password).then((data) => {
       if (data) {
         handleInfoTooltip(true);
-        history.push('/sign-in');
+        history.push('/react-mesto-api-full/sign-in');
       }
     })
       .catch((err) => {
@@ -81,7 +81,7 @@ function App() {
         setEmail(email);
         checkToken();
         setLoggedIn(true);
-        history.push('/');
+        history.push('/react-mesto-api-full');
       }
     })
       .catch((err) => {
@@ -121,7 +121,7 @@ function App() {
     localStorage.removeItem('token');
     setLoggedIn(false);
     setEmail('');
-    history.push('/sign-in');
+    history.push('/react-mesto-api-full/sign-in');
   }
 
   function handleCardDelete(card) {
@@ -252,8 +252,8 @@ function App() {
             cards={cards}
           />
 
-          <Route exact path="/react-mesto-api-full/">
-            {loggedIn ? <Redirect to='/react-mesto-api-full/' /> : <Redirect to='/react-mesto-api-full/sign-in' />}
+          <Route exact path="/react-mesto-api-full">
+            {loggedIn ? <Redirect to='/react-mesto-api-full' /> : <Redirect to='/react-mesto-api-full/sign-in' />}
           </Route>
 
         </Switch>
