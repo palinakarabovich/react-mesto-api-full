@@ -20,7 +20,7 @@ const createCard = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new ValidationError('Некорректные данные при создании карточки'));
+        next(new ValidationError('Validation error: cards data is incorrect'));
       } else next(err);
     });
 };
@@ -34,11 +34,11 @@ const deleteCard = (req, res, next) => {
 
   Card.findById(req.params.cardId)
     .then((card) => {
-      if (!card) return next(new NotFoundError('Карточки не существует'));
+      if (!card) return next(new NotFoundError('The card does not exist'));
       if (req.user._id === card.owner.toString()) {
         return removeCard();
       }
-      return next(new NoRightsError('Нельзя удалить чужую карточку'));
+      return next(new NoRightsError('Access error: you can only delete your own cards'));
     })
     .catch(next);
 };
@@ -48,14 +48,14 @@ const likeCard = (req, res, next) => {
     .then((card) => {
       if (card === null) {
         return next(
-          new NotFoundError('Запрашиваемая карточка для добавления лайка не найдена'),
+          new NotFoundError('The card is not found'),
         );
       }
       return res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new ValidationError('Переданы некорректные данные карточки'));
+        next(new ValidationError('The cards data is incorrect'));
       } else next(err);
     });
 };
@@ -65,14 +65,14 @@ const dislikeCard = (req, res, next) => {
     .then((card) => {
       if (card === null) {
         return next(
-          new NotFoundError('Запрашиваемая карточка для удаления лайка не найдена'),
+          new NotFoundError('The card is not found'),
         );
       }
       return res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new ValidationError('Переданы некорректные данные карточки'));
+        next(new ValidationError('The cards data is incorrect'));
       } else next(err);
     });
 };

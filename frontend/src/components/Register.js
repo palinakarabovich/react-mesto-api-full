@@ -22,13 +22,13 @@ function Register({onRegister, isRender}) {
     return (
         <section className='entrance page__center'>
             <div className='entrance__container'>
-                <h2 className='entrance__title'>Регистрация</h2>
+                <h2 className='entrance__title'>Registration</h2>
                 <form className='entrance__form' onSubmit={handleSubmit}>
                     <input className='entrance__input' type='email' placeholder='Email' value={email} onChange={handleEmailChange}/>
-                    <input className='entrance__input' type='password' placeholder='Пароль' value={password} onChange={handlePasswordChange}/>
-                    <button className='entrance__button-submit' type='submit'>{isRender ? 'Обработка...' : 'Зарегестрироваться' }</button>
+                    <input className='entrance__input' type='password' placeholder='Password' value={password} onChange={handlePasswordChange}/>
+                    <button className='entrance__button-submit' type='submit'>{isRender ? 'Creatin account...' : 'Register' }</button>
                 </form>
-                <Link to='/sign-in' className='entrance__link'>Уже зарегистрированы? Войти</Link>
+                <Link to='/sign-in' className='entrance__link'>Have an account? Login</Link>
             </div>
         </section>
     )

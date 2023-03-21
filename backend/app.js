@@ -26,7 +26,7 @@ app.use(cors());
 
 app.get('/crash-test', () => {
   setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
+    throw new Error('Server is going to crush');
   }, 0);
 });
 
@@ -66,7 +66,7 @@ app.post(
 app.use('/users', auth, routerUsers);
 app.use('/cards', auth, routerCards);
 app.all('*', auth, (req, res, next) => {
-  next(new NotFoundError('Страницы не существует'));
+  next(new NotFoundError('Page does not exist'));
 });
 app.use(errorLogger);
 app.use(errors());

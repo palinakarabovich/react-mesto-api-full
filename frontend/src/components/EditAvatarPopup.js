@@ -19,13 +19,13 @@ function EditProfilePopup({ isOpen, onClose, onUpdateAvatar, isRender }) {
 
   return (
     <PopupWithForm
-      title='Обновить аватар'
+      title='Change avatar'
       name='edit-avatar'
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonName={isRender ? 'Сохранение...' :'Сохранить'}>
-      <input id="input-avatar-link" name="link" type="url" className="popup__input popup__input_type_avatar-link" placeholder="Ссылка на картинку" required ref={inputRef} />
+      buttonName={isRender ? 'Saving...' :'Save'}>
+      <input id="input-avatar-link" name="link" type="url" className="popup__input popup__input_type_avatar-link" placeholder="Link: https://some.site/image.jpg" required ref={inputRef} />
       <span className="popup__input-error input-avatar-link-error"></span>
     </PopupWithForm>
   )

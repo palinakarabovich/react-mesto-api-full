@@ -31,15 +31,15 @@ function EditProfilePopup({isOpen, onClose, onAddCard, isRender}) {
     
     return (
         <PopupWithForm
-        title='Новое место'
+        title='NewCard'
         name='add-photo'
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={handleSubmit}
-        buttonName={isRender ? 'Сохранение...' :'Создать'}>
-        <input id="input-title" name="name" type="text" className="popup__input popup__input_type_title" placeholder="Название" required minLength="2" maxLength="30" onChange={handleNameInputChange} value={name}/>
+        buttonName={isRender ? 'Adding...' :'Add'}>
+        <input id="input-title" name="name" type="text" className="popup__input popup__input_type_title" placeholder="Title" required minLength="2" maxLength="30" onChange={handleNameInputChange} value={name}/>
         <span className="popup__input-error input-title-error"></span>
-        <input id="input-link" name="link" type="url" className="popup__input popup__input_type_link" placeholder="Ссылка на картинку" required onChange={handleLinkInputChange} value={link}/>
+        <input id="input-link" name="link" type="url" className="popup__input popup__input_type_link" placeholder="Link: https://some.site/image.jpg" required onChange={handleLinkInputChange} value={link}/>
         <span className="popup__input-error input-link-error"></span>
       </PopupWithForm>
     )

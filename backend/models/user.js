@@ -6,22 +6,22 @@ const AuthError = require('../errors/AuthError');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    default: 'Жак-Ив Кусто',
-    minlength: [2, 'имя пользователя не может быть короче двух символов'],
-    maxlength: [30, 'имя пользователя не может быть длиннее 30 символов'],
+    default: 'Jacques',
+    minlength: [2, 'users name cannot be less than 2 symbols'],
+    maxlength: [30, 'users name cannot be longer than 30 symbols'],
   },
   about: {
     type: String,
-    default: 'Исследователь',
-    minlength: [2, 'информация о пользователе не может быть короче двух символов'],
-    maxlength: [30, 'информация о пользователе не может быть длиннее 30 символов'],
+    default: 'Explorer',
+    minlength: [2, 'users info cannot be less than 2 symbols'],
+    maxlength: [30, 'users info cannot be longer than 30 symbols'],
   },
   avatar: {
     type: String,
     default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
     validate: {
       validator: (v) => validator.isURL(v),
-      message: 'неверный формат ссылки',
+      message: 'invalid link',
     },
   },
   email: {
@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator: (v) => validator.isEmail(v),
-      message: 'неверный формат эмейла',
+      message: 'invalid email',
     },
   },
   password: {
@@ -46,13 +46,13 @@ userSchema.statics.findUserByCredentials = function (email, password) {
     .then((user) => {
       if (!user) {
         return Promise.reject(
-          new AuthError('неправильные почта или пароль'),
+          new AuthError('invalid email or password'),
         );
       }
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
           return Promise.reject(
-            new AuthError('неправильные почта или пароль'),
+            new AuthError('invalid email or password'),
           );
         }
         return user;

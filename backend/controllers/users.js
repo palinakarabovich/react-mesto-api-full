@@ -20,7 +20,7 @@ const getUser = (req, res, next) => {
   User.findById(req.params.userId)
     .then((user) => {
       if (!user) {
-        return next(new NotFoundError('Пользователь не найден'));
+        return next(new NotFoundError('User is not found'));
       }
       return res.send(user);
     })
@@ -31,14 +31,14 @@ const findCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (user === null) {
-        next(new NotFoundError('Пользователь не найден'));
+        next(new NotFoundError('User is not found'));
       } else {
         res.send(user);
       }
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new ValidationError('Некорректные данные для поиска пользователя'));
+        next(new ValidationError('Inccorect users data'));
       } else {
         next(err);
       }
@@ -69,10 +69,10 @@ const createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.code === 11000) {
-        return next(new UserExistError('Нельзя использовать эмейл повторно'));
+        return next(new UserExistError('You can not use the same email twice'));
       }
       if (err.name === 'ValidationError') {
-        return next(new ValidationError(`Некорректные данные для создания пользователя ${err.message}`));
+        return next(new ValidationError(`Inccorect users data: ${err.message}`));
       }
       return next(err);
     });
@@ -86,14 +86,14 @@ const updateProfile = (req, res, next) => {
   })
     .then((user) => {
       if (user === null) {
-        next(new NotFoundError('Пользователь не найден'));
+        next(new NotFoundError('User is not found'));
       } else {
         res.send(user);
       }
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new ValidationError('Некорректные данные для поиска пользователя'));
+        return next(new ValidationError('Inccorect users data'));
       } return next(err);
     });
 };
@@ -106,14 +106,14 @@ const updateAvatar = (req, res, next) => {
   })
     .then((user) => {
       if (user === null) {
-        next(new NotFoundError('Пользователь не найден'));
+        next(new NotFoundError('User is not found'));
       } else {
         res.send(user);
       }
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new ValidationError('Некорректные данные'));
+        next(new ValidationError('Inccorect users data'));
       } else { next(err); }
     });
 };

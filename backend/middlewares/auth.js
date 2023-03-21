@@ -6,7 +6,7 @@ require('dotenv').config();
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const handleAuthError = (next) => {
-  next(new AuthError('Необходима авторизоваться'));
+  next(new AuthError('authorization required'));
 };
 
 module.exports = (req, res, next) => {
