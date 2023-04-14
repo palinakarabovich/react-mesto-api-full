@@ -2,7 +2,7 @@
 This project is an interactive single-page application called 'Mesto'. This service allows you to create an account, post, delete, and like photos.
 
 ## Links:
-Visit the app on [GITHUB-PAGES](https://palinakarabovich.github.io/react-mesto-api-full)
+Visit the app on [GITHUB-PAGES](https://palinakarabovich.github.io/react-mesto-api-full). Login cat@cat.cat, password: cat123
 Server is hosted on [HEROKU](https://mesto-api-mongodb.herokuapp.com/)
 
 ## Main Features
